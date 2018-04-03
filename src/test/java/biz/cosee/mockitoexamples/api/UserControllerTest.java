@@ -1,4 +1,4 @@
-package biz.cosee.mockitoexamples;
+package biz.cosee.mockitoexamples.api;
 
 import biz.cosee.mockitoexamples.api.UserController;
 import biz.cosee.mockitoexamples.model.User;
