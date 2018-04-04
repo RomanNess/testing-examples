@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
                 executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD,
                 config = @SqlConfig(errorMode = SqlConfig.ErrorMode.IGNORE_FAILED_DROPS))
 })
-public class UserControllerTest {
+public class UserControllerSpringContextTest {
 
     @Autowired
     private UserController userController;
