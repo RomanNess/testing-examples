@@ -37,4 +37,10 @@ public class UserController {
     public void saveUser(@RequestBody User user) {
         userService.saveUser(user);
     }
+
+
+    @GetMapping("/externalusers")
+    public List<User> getExternalUsers() {
+        return userService.getExternalUsers();
+    }
 }

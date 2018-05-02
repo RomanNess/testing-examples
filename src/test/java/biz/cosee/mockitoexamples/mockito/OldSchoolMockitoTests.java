@@ -1,6 +1,7 @@
 package biz.cosee.mockitoexamples.mockito;
 
 import biz.cosee.mockitoexamples.api.UserController;
+import biz.cosee.mockitoexamples.external.ExternalUserService;
 import biz.cosee.mockitoexamples.model.User;
 import biz.cosee.mockitoexamples.service.UserRepository;
 import biz.cosee.mockitoexamples.service.UserService;
@@ -20,12 +21,14 @@ public class OldSchoolMockitoTests {
     private UserService userServiceSpy;
 
     private UserRepository userRepositoryMock;
+    private ExternalUserService externalUserServiceMock;
 
     @Before
     public void hideInitializationInMethod() {
         userRepositoryMock = Mockito.mock(UserRepository.class);
+        externalUserServiceMock = Mockito.mock(ExternalUserService.class);
 
-        userServiceSpy = new UserService(userRepositoryMock);
+        userServiceSpy = new UserService(userRepositoryMock, externalUserServiceMock);
         userServiceSpy = Mockito.spy(userServiceSpy);
 
         userController = new UserController(userServiceSpy);
