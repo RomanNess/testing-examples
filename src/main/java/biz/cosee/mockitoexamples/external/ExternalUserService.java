@@ -1,5 +1,6 @@
 package biz.cosee.mockitoexamples.external;
 
+import biz.cosee.mockitoexamples.model.Comment;
 import biz.cosee.mockitoexamples.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.annotations.VisibleForTesting;
@@ -52,6 +53,20 @@ public class ExternalUserService {
             }
         } catch (IOException e) {
             throw new ExternalServiceException("Failed to get users.", e);
+        }
+    }
+
+    public List<Comment> getCommentsForPost(long postId) {
+        try {
+            Response<List<Comment>> response = externalUserServiceRetrofitClient.getCommentsForPost(postId).execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                // fixme no real error handling here
+                throw new ExternalServiceException("Failed to get comments.");
+            }
+        } catch (IOException e) {
+            throw new ExternalServiceException("Failed to get comments.", e);
         }
     }
 }
